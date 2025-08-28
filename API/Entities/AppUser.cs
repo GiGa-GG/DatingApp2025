@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.SignalR;
-
-namespace API.Etities;
+namespace API.Entities;
 
 public class AppUser
 {
