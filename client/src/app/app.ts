@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,6 +8,21 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('client');
+export class App implements OnInit {
+  private http = inject(HttpClient);
+  protected readonly title = signal("Dating App");
+
+  ngOnInit(): void {
+    this.http.get("https://localhost:5001/api/members").subscribe({
+      next: response => {
+        console.log(response);
+      },
+      error: error => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log("Request complete");
+      }
+    });
+  }
 }
