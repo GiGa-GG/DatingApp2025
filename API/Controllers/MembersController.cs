@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[Route("api/[controller]")] // localhost:5001/api/members
-[ApiController]
-public class MembersController(AppDbContext context) : ControllerBase
+public class MembersController(AppDbContext context) : BaseApiController
 {
     [HttpGet]
     public ActionResult<IReadOnlyList<AppUser>> GetMembers()
