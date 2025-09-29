@@ -15,7 +15,13 @@ export class Register {
   protected creds = {} as RegisterCreds;
 
   register(): void {
-    console.log(this.creds);
+    this.accountService.register(this.creds).subscribe({
+      next: response => { 
+        console.log(response);
+        this.cancel();
+      },
+      error: error => console.log(error)
+    });
   }
 
   cancel(): void {
