@@ -20,6 +20,6 @@ export const routes: Routes = [
             { path: "messages", component: Messages },
         ]
     },
-    { path: "**", component: Home },
     { path: "errors", component: TestErrors },
+    { path: "**", component: Home },
 ];
