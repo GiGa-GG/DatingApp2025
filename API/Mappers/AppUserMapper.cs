@@ -9,7 +9,6 @@ public static class AppUserMapper
     public static UserResponse ToDto(this AppUser appUser, ITokenService tokenService)
     {
         var token = tokenService.CreateToken(appUser);
-
         return new UserResponse
         {
             Id = appUser.Id,
