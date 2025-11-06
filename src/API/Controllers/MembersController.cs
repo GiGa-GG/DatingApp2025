@@ -9,14 +9,12 @@ namespace API.Controllers;
 [Authorize]
 public class MembersController(IMembersRepository membersRepository) : BaseApiController
 {
-    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Member>>> GetMembers()
     {
         return Ok(await membersRepository.GetMembersAsync());
     }
 
-    [AllowAnonymous]
     [HttpGet("{id}")] // http://localhost:5001/api/members/bob-id
     public async Task<ActionResult<Member>> GetMember(string id)
     {
@@ -33,5 +31,6 @@ public class MembersController(IMembersRepository membersRepository) : BaseApiCo
     {
         return Ok(await membersRepository.GetPhotosAsync(id));
     }
+
 }
 
