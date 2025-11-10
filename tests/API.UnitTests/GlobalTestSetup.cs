@@ -12,17 +12,17 @@ public class GlobalTestSetup
     public async Task Setup()
     {
         DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlite("Data Source=dating.db")
+            .UseSqlite("Data source=dating.db")
             .Options;
 
         AppDbContext = new AppDbContext(options);
         await AppDbContext.Database.MigrateAsync();
+        await Seed.SeedUsers(AppDbContext);
     }
-    
+
     [OneTimeTearDown]
     public async Task TearDown()
     {
         await AppDbContext.DisposeAsync();
     }
-
 }
