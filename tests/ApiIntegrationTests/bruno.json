@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "ApiIntegrationTests",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
