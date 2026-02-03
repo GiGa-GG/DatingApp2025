@@ -8,7 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "skipTests": false,
-          "path" : "src"
+          "path": "src"
         },
         "@schematics/angular:service": {
           "skipTests": false,
@@ -21,6 +21,14 @@
         "@schematics/angular:interceptor": {
           "skipTests": false,
           "path": "src/core/interceptors"
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": false,
+          "path": "src"
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": false,
+          "path": "src/core/pipes"
         }
       },
       "root": "",
@@ -61,7 +69,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -69,8 +83,8 @@
         "serve": {
           "options": {
             "ssl": true,
-            "sslCert": "./ssl/localhost+2.pem",
-            "sslKey": "./ssl/localhost+2-key.pem"
+            "sslCert": "./ssl/localhost.pem",
+            "sslKey": "./ssl/localhost-key.pem"
           },
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -103,5 +117,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

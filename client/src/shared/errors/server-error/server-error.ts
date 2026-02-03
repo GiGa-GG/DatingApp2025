@@ -12,10 +12,10 @@ export class ServerError {
   private router = inject(Router);
   protected error = signal<ApiError | null>(null);
   protected showDetails = false;
-  
+
   constructor() {
     const navigation = this.router.currentNavigation();
-    this.error.set(navigation?.extras?.state?.['error']);
+    this.error.set(navigation?.extras?.state?.["error"]);
   }
 
   detailsToggle() {

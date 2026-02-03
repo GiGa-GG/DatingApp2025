@@ -1,46 +1,46 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { ToastService } from '../services/toast-service';
-import { NavigationExtras, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { catchError } from 'rxjs';
-
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastService);
   const router = inject(Router);
+
   return next(req).pipe(
     catchError(error => {
       if (error) {
         switch (error.status) {
           case 400:
             if (error.error.errors) {
-              const modalStateErrors = [];
+              const modelStateErrors = [];
               for (const key in error.error.errors) {
                 if (error.error.errors[key]) {
-                  modalStateErrors.push(error.error.errors[key]);
+                  modelStateErrors.push(error.error.errors[key]);
                 }
               }
-              throw modalStateErrors.flat();
+              throw modelStateErrors.flat();
             } else {
               toast.error(error.error);
             }
             break;
           case 401:
-            toast.error('Unauthorized');
+            toast.error("Unauthorized");
             break;
           case 404:
-            router.navigate(['/not-found']);
+            router.navigateByUrl("/not-found")
             break;
           case 500:
             const navigationExtras: NavigationExtras = { state: { error: error.error } };
-            router.navigate(['/server-error'], navigationExtras);
+            router.navigateByUrl("/server-error", navigationExtras);
             break;
           default:
-            toast.error('Something unexpected went wrong');
+            toast.error("The unexpected happened!")
             break;
         }
       }
       throw error;
     })
-  )
+  );
 };

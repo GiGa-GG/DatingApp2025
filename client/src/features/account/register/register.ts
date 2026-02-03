@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
-import { RegisterCreds } from '../../../types/registerCreds';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../../core/services/account-service';
+import { RegisterCreds } from '../../../types/user';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,7 @@ export class Register {
 
   register(): void {
     this.accountService.register(this.creds).subscribe({
-      next: response => { 
+      next: response => {
         console.log(response);
         this.cancel();
       },
