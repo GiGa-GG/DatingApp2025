@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Nav } from '../layout/nav/nav';
+import { Nav } from "../layout/nav/nav";
 import { Router, RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
 
