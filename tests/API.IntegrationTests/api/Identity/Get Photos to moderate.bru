@@ -1,20 +1,15 @@
 meta {
-  name: Get Photos to moderate as arenita
+  name: Get Photos to moderate
   type: http
-  seq: 11
+  seq: 12
 }
 
 get {
   url: {{baseUrl}}/api/admin/photos-to-moderate
   body: none
-  auth: bearer
-}
-
-auth:bearer {
-  token: {{token}}
+  auth: inherit
 }
 
 settings {
   encodeUrl: true
-  timeout: 0
 }
