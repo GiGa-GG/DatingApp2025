@@ -4,6 +4,7 @@ import { filter } from 'rxjs';
 import { AgePipe } from '../../../core/pipes/age-pipe';
 import { AccountService } from '../../../core/services/account-service';
 import { MembersService } from '../../../core/services/members-service';
+import { PresenceService } from '../../../core/services/presence-service';
 
 @Component({
   selector: 'app-member-detail',
@@ -18,8 +19,9 @@ export class MemberDetail implements OnInit {
   protected membersService = inject(MembersService);
   protected title = signal<string | undefined>("Profile");
   protected isCurrentUser = computed(() => {
-    return this.accountService.currentUser()?.id === this.membersService.member()?.id;
-  })
+    return this.accountService.currentUser()?.id === this.route.snapshot.paramMap.get('id');
+  });
+  protected presenceService = inject(PresenceService);
 
   ngOnInit(): void {
     this.title.set(this.route.firstChild?.snapshot?.title);
